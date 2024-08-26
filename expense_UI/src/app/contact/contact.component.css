@@ -1,0 +1,42 @@
+/* #user{
+    background: rgba(0, 0, 0, 0.26);
+  border: none;
+  box-shadow: 0 15px 20px;
+  border-radius: 10px;
+} */
+.accept{
+    background: #36c5c3;
+    font-family: monospace;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 400;
+ }
+ .ignore a{
+    font-family: monospace;
+    font-size: 1rem;
+    color: #6a6767e7;
+    font-weight: 400;
+ }
+ .image{
+    height: 100px;
+    width: 100px;
+ }
+ /* .image-me:hover{
+  animation: ease-in-out;
+  transition-delay: 2s;
+  transform-origin: 10%;
+  transform: scaleX(1.4);
+  transform: scaleY(1.2);
+  transition: 3s;
+ } */
+ .user-details{
+   font-family: 'Bebas Neue', sans-serif;
+   font-size: 1rem;
+   color: #000;
+   font-weight: 400;
+ }
+  .userView {
+   /* border-bottom: 2px solid #ef476f; */
+   border-top: 2px solid #ef476f;
+   
+ }

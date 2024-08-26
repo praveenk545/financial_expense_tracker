@@ -1,0 +1,72 @@
+.submit{
+    background:#24e5ff;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .add{
+    background: #81f28e;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .search{
+    background: #81f28e;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  .content span{
+    color: #02ff1f;
+    font-weight: 450;
+    font-size: 1.1rem;
+
+  }
+  .expense{
+    color: #f73729;
+    font-weight: 450;
+    font-size: 1.1rem;
+  }
+  .content p{
+    /* color:#ef476f ; */
+    font-weight: 450;
+  }
+
+.form-control:valid {
+  border-color: #28a745; /* Bootstrap's success color */
+}
+/* In your component's CSS file */
+.card {
+  background-color: #ffffff; /* White background for the card */
+}
+
+.card-title {
+  font-size: 1.1rem; /* Larger font size for category */
+  font-weight: 500; /* Semi-bold text */
+}
+
+.badge {
+  font-size: 1rem; /* Adjust badge font size */
+  padding: 0.5rem 1rem; /* Adjust padding for badge */
+  color: #02ff1f;
+  font-weight: 450;
+}
+.card-title span {
+  font-size: 1rem; 
+  color: #02ff1f;
+  font-weight: 450;
+}
+
+.card-body {
+  border-radius: 0.5rem; /* Rounded corners for card body */
+}
+
+.text-muted {
+  font-size: 0.875rem; /* Smaller font size for date */
+  color: #6c757d; /* Muted color for date text */
+}
+
+

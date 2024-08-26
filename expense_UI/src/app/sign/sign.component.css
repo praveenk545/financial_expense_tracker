@@ -1,0 +1,22 @@
+.submit{
+    background: #06d6a0;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .login{
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #000;
+      font-weight: 400;
+  }
+  .login:hover{
+      background: #06d6a0;
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 400;
+      transition: 0.6s;
+   
+    }

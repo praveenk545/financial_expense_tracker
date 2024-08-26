@@ -1,0 +1,149 @@
+<section>
+  <div class="container mt-3">
+    <section id="income">
+        <div class="row justify-content-center rounded gx-5 p-3">
+
+            <div class="col d-flex justify-content-between">
+                <div class="">
+                    <h5 class="btn bg-white  p-1 px-2" [routerLink]="['/addup']" ><fa-icon style="color: #47ef47;" [icon]="icons.faEdit"></fa-icon><span class="ms-2">Edit-Incomes</span></h5>
+                </div>
+
+                <div class="">
+                  <!-- <button class="add btn  p-1 px-2" (click)="addIncome()">Add-Income</button> -->
+                  <h5 (click)="addIncome()" class="btn bg-white  p-1 px-2"><fa-icon style="color: #47ef47;" [icon]="icons.faAdd"></fa-icon><span class="ms-2">Add-Income</span></h5>
+                </div>
+            </div>
+
+            <!-- income -->
+             <section *ngIf="!isChange">
+            <app-useredit></app-useredit>
+        </section>
+        <!-- income end -->
+
+        <!-- income add -->
+         <section *ngIf="isChange" class="row justify-content-center">
+            <div  class="addmyincome col-md-10  justify-content-center border bg-white rounded shadow-lg mt-3 m-3">
+                <form [formGroup]="Form">
+                    <div class="text-center py-3">
+<h4 class="text-center" style="color: #ef476f;;">Income</h4>
+                    </div>
+
+                    <div class="row justify-content-center ">
+                      <div class="row">
+                        <div class="col-md-6 mb-2">
+                       <label class=" "><span class="text-danger fw-bold">*</span>Source</label>
+                                <select class="form-select"  formControlName="source" [ngClass]="{'is-invalid':(Form.controls.source.touched||isTrySubmit)&& Form.controls.source.errors}" >
+                                    <option select value >category of income</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="bonus">Bonus</option>
+                                    <option value="freelance">Freelance</option>
+                                    <option value="rental">Rental</option>
+                                    <option value="trading">Trading</option>
+                                    <option value="business">Business</option>
+                                    <option value="others">Others</option>
+                                   
+                                  </select>
+                                  <div class="invalid-feedback" *ngIf="(Form.controls.source.touched||isTrySubmit)&&Form.controls.source.errors">
+                                    <div *ngIf="Form.controls.source.errors['required']">*Source is required.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            
+                        </div>
+                        <div class="col-md-6 mb-2">
+
+                          <label class=" "><span class="text-danger fw-bold">*</span>Amount</label>
+                          <input type="text" placeholder="amount" class="form-control" formControlName="amount" [ngClass]="{'is-invalid':(Form.controls.amount.touched||isTrySubmit)&& Form.controls.amount.errors}"/>
+                          <div class="invalid-feedback" *ngIf="(Form.controls.amount.touched||isTrySubmit)&&Form.controls.amount.errors">
+                              <div *ngIf="Form.controls.amount.errors['required']">*Amount is required.
+                              </div>
+                              <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                              </div> -->
+                              </div>
+                          
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="row justify-content-center ">
+                      <div class="row">
+                        <div class="col-md-6 mb-2">
+                          <label class=" "><span class="text-danger fw-bold">*</span>Currency</label>
+                          <select class="form-select" aria-label="Default select example" formControlName="currency" [ngClass]="{'is-invalid':(Form.controls.currency.touched||isTrySubmit)&& Form.controls.currency.errors}" >
+                            <option selected value>category of income</option>
+                            <option value="₹">Rupee</option>
+                            <option value="$">Doller</option>
+                          </select>
+                          <div class="invalid-feedback" *ngIf="(Form.controls.currency.touched||isTrySubmit)&&Form.controls.currency.errors">
+                            <div *ngIf="Form.controls.currency.errors['required']">*Currency is required.
+                            </div>
+                            <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                            </div> -->
+                            </div>
+                      </div>
+                      <!-- .. -->
+
+                      <div class="col-md-6 mb-2">
+                        <label class=" "><span class="text-danger fw-bold">*</span>Recurring</label>
+                        <select class="form-select" aria-label="Default select example" formControlName="recurring" [ngClass]="{'is-invalid':(Form.controls.recurring.touched||isTrySubmit)&& Form.controls.recurring.errors}" >
+                          <option selected value>the income is recurring (Yes/No)</option>
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="(Form.controls.recurring.touched||isTrySubmit)&&Form.controls.recurring.errors">
+                            <div *ngIf="Form.controls.recurring.errors['required']">*recurring is required.
+                            </div>
+                            <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                            </div> -->
+                            </div>
+                    </div>
+                      <!-- .. -->
+                      </div>
+                  
+                  </div>
+
+      
+
+                  <div class="row justify-content-center ">
+                    <div class="row">
+                      <div class="col-md-6 mb-2">
+                      <label class=" "><span class="text-danger fw-bold">*</span>Date</label>
+                      <input type="date" placeholder="" class="form-control" formControlName="date" [ngClass]="{'is-invalid':(Form.controls.date.touched||isTrySubmit)&& Form.controls.date.errors}"/>
+                      <div class="invalid-feedback" *ngIf="(Form.controls.date.touched||isTrySubmit)&& Form.controls.date.errors">
+                          <div *ngIf="Form.controls.date.errors['required']">*Date is required.
+                          </div>
+                          <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                          </div> -->
+                          </div>
+                  
+                      
+                  </div>
+                <!-- start -->
+                <div class="col-md-6 mb-2">
+                  <label for="comment">Description:</label>
+<textarea class="form-control" formControlName="description" placeholder="write here!" rows="4" id="comment"></textarea>
+                </div>
+                <!-- end -->
+                </div>
+                   
+                </div>
+
+
+                    <div class="row justify-content-evenly">
+                        <div class="col-md-6 py-3 text-center d-flex justify-content-evenly">
+
+<button type="button" class="close btn" (click)="closeAddItem()">Close</button>
+<button type="submit" class="submit btn" (click)="submit()">Add</button>
+                        </div>
+                    </div>
+                
+                </form>
+                </div>
+         </section>
+        <!-- income add end -->
+        </div>
+    </section>
+</div>
+
+</section>

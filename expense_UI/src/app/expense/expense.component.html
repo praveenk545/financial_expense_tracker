@@ -1,0 +1,131 @@
+<section>
+  <div class="container mt-3">
+    <section id="Expenses">
+        <div class="row justify-content-center rounded gx-5 p-3">
+
+                <div class="col d-flex justify-content-between">
+                    <div class="">
+                        <h5 class="btn bg-white" style="cursor: pointer;" (click)="expense()"><fa-icon style="color: #47ef47;" [icon]="icons.faEdit"></fa-icon><span class="ms-2">Expense</span></h5>
+                    </div>
+
+                    <div class="">
+                      <button class="btn bg-white p-1 px-2 " (click)="isChangePage()"><fa-icon style="color: #47ef47;" [icon]="icons.faAdd"></fa-icon><span class="ms-2">Add Expense</span></button>
+                    </div>
+                </div>
+                <div *ngIf="!isChange" class="row mt-3 py-2">
+
+                      <app-pagination></app-pagination>
+                </div>
+
+                <!-- for Add -->
+                <div class="row justify-content-center" *ngIf="isChange">
+                  <div  class="col-md-8 justify-content-center border bg-white rounded shadow-lg mt-3 m-3">
+                   
+                    <form [formGroup]="addItems">
+                        <div class="text-center py-3">
+                    <h4 class="text-center" style="color: #ef476f;">Expenses</h4>
+                        </div>
+                        <div class="row justify-content-center ">
+                          <div class="row">
+                            <div class="col-md-6 mb-2">
+                              <label class=" "><span class="text-danger fw-bold ">*</span>Invest in</label>
+                              <input type="text" placeholder="item-name" class="form-control" formControlName="category" [ngClass]="{'is-invalid':(addItems.controls.category.touched||isTrySubmit)&& addItems.controls.category.errors}"/>
+                              <div class="invalid-feedback" *ngIf="(addItems.controls.category.touched||isTrySubmit)&& addItems.controls.category.errors">
+                                  <div *ngIf="addItems.controls.category.errors['required']">* invest (item name) is required.
+                                  </div>
+                                 
+                                  </div>
+                          
+                              
+                          </div>
+                          <!-- start -->
+                          <div class="col-md-6 mb-2">
+    
+                            <label class=" "><span class="text-danger fw-bold">*</span>Amount</label>
+                            <input type="text" placeholder="amount" class="form-control" formControlName="amount" [ngClass]="{'is-invalid':(addItems.controls.amount.touched||isTrySubmit)&& addItems.controls.amount.errors}"/>
+                            <div class="invalid-feedback" *ngIf="(addItems.controls.amount.touched||isTrySubmit)&&addItems.controls.amount.errors">
+                                <div *ngIf="addItems.controls.amount.errors['required']">*amoutn is required.
+                                </div>
+                                <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                </div> -->
+                                </div>
+                            
+                        </div>
+                          <!-- end -->
+                          </div>
+                   
+                        </div>
+
+
+
+                        <div class="row justify-content-center ">
+                          <div class="row">
+                            <div class="col-md-6 mb-2">
+                              <label class=" "><span class="text-danger fw-bold">*</span>Date</label>
+                              <input type="date" placeholder="" class="form-control" formControlName="date" [ngClass]="{'is-invalid':(addItems.controls.date.touched||isTrySubmit)&& addItems.controls.date.errors}"/>
+                              <div class="invalid-feedback" *ngIf="(addItems.controls.date.touched||isTrySubmit)&& addItems.controls.date.errors">
+                                  <div *ngIf="addItems.controls.date.errors['required']">*date is required.
+                                  </div>
+                                  <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                  </div> -->
+                                  </div>
+                          
+                              
+                           </div>
+
+                            <!-- start -->
+                            <div class="col-md-6 mb-2">
+                              <label>Payment Method</label>
+                              <select class="form-select"  formControlName="paymentMethod" [ngClass]="{'is-invalid':(addItems.controls.paymentMethod.touched||isTrySubmit)&& addItems.controls.paymentMethod.errors}" >
+                                <option selected value >category of Payment</option>
+                                <option value="gpay">Gpay</option>
+                                <option value="cash">Cash</option>
+                                <option value="credit card">Credit-card</option>
+                                <option value="net banking">Net Banking</option>
+                                <option value="paytm">Paytm</option>
+                                <option value="others">Others</option>
+                               
+                              </select>
+                              <div class="invalid-feedback" *ngIf="(addItems.controls.paymentMethod.touched||isTrySubmit)&& addItems.controls.paymentMethod.errors">
+                                <div *ngIf="addItems.controls.paymentMethod.errors['required']">*Payment category is required.
+                                </div>
+                                <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                </div> -->
+                                </div>
+                              </div>
+
+                       
+                            <!-- end -->
+                          </div>
+                       
+                      </div>
+                      <div class="row justify-content-center ">
+                        <div class="row">
+                          <div class="col-md-6 mb-2">
+                            <label for="comment">Description:</label>
+  <textarea class="form-control" formControlName="description" placeholder="write here!" rows="4" id="comment"></textarea>
+                          </div>
+                          </div>
+                        </div>
+                        <!-- register Id  -->
+                        <!-- <select class="hidden-select" formControlName="registerId">
+                          <option [ngValue]="id">register Id</option>
+                        </select> -->
+                        <!-- register Id  -->
+
+                        <div class="row justify-content-evenly">
+                            <div class="col-md-6 py-3 text-center d-flex justify-content-evenly">
+
+    <button type="button" class="close btn" (click)="closeAddItem()">Close</button>
+    <button type="submit" class="submit btn" (click)="isSubmit()">Add</button>
+                            </div>
+                        </div>
+                    
+                    </form>
+                    </div></div>
+               
+        </div>
+    </section>
+</div>
+
+</section>

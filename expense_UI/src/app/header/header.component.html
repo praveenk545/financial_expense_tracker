@@ -1,0 +1,28 @@
+
+<section>
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow rounded py-3 px-3 px-0">
+            <a class="h6 navbar-brand"  href="#">Financial Alchemist</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a [routerLink]="['/dashboard']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/exp']" routerLinkActive="active-link" class="nav-link">Expenses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/income']" routerLinkActive="active-link" class="nav-link">Income</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/sign-up']" routerLinkActive="active-link" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+

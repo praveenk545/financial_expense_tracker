@@ -1,0 +1,77 @@
+ onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    this.http.post('http://example.com/upload', formData)
+      .subscribe(
+        (response) => {
+          console.log('File uploaded successfully');
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+        }
+      );
+  }
+  
+  Main issue:
+  unautharized issue, auth status is false.
+
+  pending works:
+  contact page: details, contact you.
+  user Info page: file upload, edit info crud. extra - verify.
+  expense page : pagination, crud.
+  income:pagination and crud.
+  authgurd & and auth service: protect routes.
+  set token locatl storage- name, id, country etc.
+  search button : date to date values data binding.
+
+        .hidden-select {
+            display: none;
+        }
+
+            <select class="hidden-select" name="hiddenSelect">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+
+
+        function calculateAge(dateOfBirth) {
+    // Parse the dateOfBirth string into a Date object
+    const dob = new Date(dateOfBirth);
+    const today = new Date();
+
+    // Calculate the difference in years
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDifference = today.getMonth() - dob.getMonth();
+
+    // Adjust age if the birthday hasn't occurred yet this year
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+        age--;
+    }
+
+    return age;
+}
+
+// Example usage:
+const dob = '1990-05-15'; // Date of Birth in YYYY-MM-DD format
+console.log(`Age: ${calculateAge(dob)}`);
+
+
+export class ExampleComponent implements OnDestroy 
+  private subscription: Subscription = new Subscription();
+
+  constructor(private exampleService: ExampleService) {
+    this.subscription.add(
+      this.exampleService.getData().subscribe(data => {
+        // handle data
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    this.subscription.unsubscribe();
+  }
+

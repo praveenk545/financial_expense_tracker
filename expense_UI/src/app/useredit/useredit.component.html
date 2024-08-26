@@ -1,0 +1,180 @@
+
+
+
+	<main class="db" *ngIf="user.length>0">
+		<div class="db__toolbar">
+			<h1 class="db__heading btn"(click)="view()">Incomes</h1>
+			<div class="db__toolbar-btns">
+				<button class="db__select" type="button">
+					<svg class="db__select-icon" width="24px" height="24px" aria-hidden="true">
+						<use xlink:href="#calendar" />
+					</svg>
+					Date
+				</button>
+				<button class="db__select" type="button">
+					<svg class="db__select-icon" width="24px" height="24px" aria-hidden="true">
+						<use xlink:href="#export" />
+					</svg>
+					Export
+				</button>
+			</div>
+		</div>
+		<!-- user recent income start -->
+			<div *ngFor="let u of Recent;let i =index" class="db__cell bg-white">
+				<h2 class="db__top-stat">{{u.source}}</h2>
+			
+					<div class="widget-content-wrapper">
+						<div class="widget-content-left pr-2 fsize-1">
+							<div class="widget-numbers mt-0 fsize-3 text-info"><small>{{percentage[i]}}% of your total income</small></div>
+						</div>
+						<div class="widget-content-right w-100">
+							<div class="progress-bar-xs progress">
+								<div class="progress-bar bg-info" role="progressbar" aria-valuenow="100"  aria-valuemin="0" aria-valuemax="100"   [ngStyle]="{'width': percentage[i] + '%'}"></div>
+							</div>
+						</div>
+					</div>
+				
+				<div class="db__counter">
+					<div class="db__counter-value"><small class="fs-5">{{u.currency|uppercase }}</small>{{ u.amount }}</div>
+					<div class="db__counter-label">
+						<strong></strong><br><small>{{u.date|dateAgo}}</small>
+					</div>
+				</div>
+			</div>
+		<!-- user recent income end -->
+	
+		<!-- user income start -->
+		<div class="db__cell">
+			<h2 class="db__top-stat">Total Revenue</h2>
+			
+			<div class="widget-content-wrapper">
+				<div class="widget-content-left pr-2 fsize-1">
+					<div class="widget-numbers mt-0 fsize-3 text-info">100%</div>
+				</div>
+				<div class="widget-content-right w-100">
+					<div class="progress-bar-xs progress">
+						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="db__counter">
+				<div class="db__counter-value"><span class="h6 m-1"><small>INR</small></span>{{high}}</div>
+				<div class="db__counter-label">
+					<strong>+100%</strong><br><small>vs yesterday</small>
+				</div>
+			</div>
+		</div>
+		<!-- user Top income end -->
+	
+	
+		<!-- user order of income and pagination start-->
+		<div class="db__cell bg-white">
+			<h2 class="db__subheading">All Your Incomes</h2>
+			<table class="db__product-table">
+			  <thead>
+				<tr>
+				  <th>Source</th>
+				  <th>Date</th>
+				  <th>Recurring</th>
+				  <th>Amount</th>
+				  <!-- <th>Action</th> -->
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr *ngFor="let product of paginatedProducts;let i =index">
+				  <td>
+					<div class="db__product">
+					  <div class="db__product-details">
+						<div class="db__product-detail-line">{{ product.source }}</div>
+						<div class="db__product-detail-line">
+						  <small>{{ product.date|dateAgo }}</small>
+						</div>
+						<div class="db__status" [ngClass]="{'db__status--green': product.recurring==true}">
+						  {{ product.recurring }}
+						</div>
+					  </div>
+					  <div class="db__product-details">
+						<strong>{{product.currency|uppercase}} {{ product.amount }}</strong>
+					  </div>
+	
+					</div>
+				  </td>
+				  <td>{{ product.source }}</td>
+				  <td>{{ product.date|dateAgo}}</td>
+				  <td class="db__status" [ngClass]="{'db__status--green': product.recurring=='yes' ? 'Yes' : 'No'}">
+					<span>{{ product.recurring == 'yes' ? 'Yes' : 'No' }}</span>
+				  </td>
+				  <td><strong><small>{{product.currency|uppercase}}</small> {{ product.amount }}</strong></td>
+				   <td>
+					<!-- <div class="d-flex justify-content-center fs-5" role="button"> -->
+						<!-- <fa-icon class="text-primary" (click)="view(product.id,product)" [icon]="icons.faEye" ></fa-icon> -->
+					<!-- <fa-icon class="text-primary" data-bs-toggle="modal" data-bs-target="#myModal" (click)="incomeEdit(product.id,product)" [icon]="icons.faEdit" ></fa-icon> 
+					<fa-icon class="text-danger"  (click)="incomeDelete(product.id)" [icon]="icons.faRemove" ></fa-icon> -->
+					<!-- </div> -->
+					
+				</td>
+				</tr>
+			  </tbody>
+			</table>
+			
+			<!-- Pagination Controls -->
+			<div class="pagination-controls row gap-2">
+				<div class="d-flex justify-content-start gap-5">
+					<button class="btn btn-dark p-3 text-white" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"><fa-icon  style="color: rgb(88, 235, 216);" [icon]="icons.faArrowAltCircleLeft"></fa-icon><span class="ms-2">Previous</span> </button>
+					<span class="p-3 text-danger bg-light rounded">{{ currentPage }}</span>
+					<button class="btn btn-dark p-3 text-white" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"><span>Next</span><fa-icon class="ms-2" style="color: rgb(88, 235, 216);" [icon]="icons.faArrowAltCircleRight"></fa-icon></button>
+				  </div>
+				</div>
+			  
+		  </div>
+		<!-- user order of income and pagination end-->
+	
+		<!-- table edit is here -->
+	
+		<!-- table edit is here -->
+	
+		<!-- top income Categories start -->
+		<div class="db__cell bg-white" >
+			<h2 class="db__subheading">Top Incomes Categories</h2>
+			<div class="db__bubbles">
+				<div *ngFor="let t of top" class="db__bubble">
+					<span  class="db__bubble-text text-dark">
+						{{t.source}}<br><strong class="db__bubble-value text-dark">{{t.amount}}</strong><br>Recurring {{t.recurring}}
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- top income Categories end  -->
+	
+		<!-- <div class="db__cell bg-white">
+			<h2 class="db__subheading">Recent Orders</h2>
+			<div class="db__order">
+				<div class="db__order-cat">
+					<svg class="db__order-cat-icon" width="24px" height="24px" aria-hidden="true">
+						<use xlink:href="#smartphone" />
+					</svg>
+				</div>
+				<div class="db__order-name">
+					iPhone 13<br>
+					<small>
+						<time datetime="2022-05-07 18:49:00">May 7 at 6:49 PM</time>
+					</small>
+				</div>
+				<div><strong>599.99</strong></div>
+			</div>
+		</div> -->
+	
+	
+		<!-- pop up -->
+		
+	
+		<!-- pop up -->
+	</main>
+
+
+<!-- Modal HTML -->
+
+  
+
+

@@ -1,0 +1,365 @@
+<main *ngIf="useValues.length>0">
+  
+  <div class="row gap-2">
+    <div class="col-md-3 ">
+      <div class="card mb-3 p-2 widget-content bg-white">
+          <div class="widget-content-wrapper text-white">
+              <div class="widget-content-left">
+                  <div class="widget-heading text-dark fs-6">Total Expenses<span class="badge text-danger fs-6 bg-light"> {{expenseTotal |currency:"INR"}}</span></div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <div class="col-md-3 ">
+        <div class="card mb-3 p-2 widget-content bg-white">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-subheading text-dark ">A week expense <span class="badge text-danger fs-6 bg-light"> {{weekTotalValues |currency:"INR"}}</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="col-md-3">
+        <div class="card mb-3 widget-content bg-grow-early">
+            <div class="widget-content-wrapper text-white">
+                <div class="widget-content-left">
+                    <div class="widget-heading">Followers</div>
+                    <div class="widget-subheading">People Interested</div>
+                </div>
+                <div class="widget-content-right">
+                    <div class="widget-numbers text-white"><span>46%</span></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+ 
+</div>
+
+<!-- table pagination -->
+<div class="row">
+<div class="col-md-12">
+  <div class="main-card mb-3 card p-3">
+    <div class="card-header h6 p-2">
+      All Your Expenses
+      <div class="btn-actions-pane-right">
+        <div role="group" class="btn-group-sm btn-group">
+          <button class="active btn btn-success">Last Week</button>
+          <button class="btn btn-focus">All Month</button>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">#</th>
+            <th>Invested</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Payment</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of paginatedItems; let i = index;">
+            <td class="text-center text-muted">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td>
+              <div class="widget-content p-0">
+                <div class="widget-content-wrapper">
+                  <div class="widget-content-left mr-3">
+                    <!-- Optional content -->
+                  </div>
+                  <div class="widget-content-left flex2">
+                    <div class="widget-heading">{{ u.category }}</div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="text-center  text-danger fs-6 fw-bold ">{{ u.amount|currency:"INR" }}</td>
+            <td class="text-center">
+              <div>{{ u.date | dateAgo }}</div>
+            </td>
+            <td class="text-center">
+              <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">{{ u.paymentMethod }}</button>
+            </td>
+            <td class="text-center fs-5" role="button">
+              <fa-icon class="text-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(u.id, u)" [icon]="icons.faEdit"></fa-icon>
+              <fa-icon class="text-danger ms-4" data-toggle="modal" data-target="#exampleModalCenter" (click)="delete(u.id, u)" [icon]="icons.faRemove"></fa-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination Controls -->
+    <div class="card-footer">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="!hasPrevious">
+            <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item" *ngFor="let page of pageNumbers" [class.active]="page === currentPage">
+            <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="!hasNext">
+            <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- table pagination -->
+
+<div class="row gap-3">
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-danger p-3 mb-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Income Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-success mb-3 p-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Expenses Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-warning p-3 mb-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Spendings Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="card-shadow-info p-3 mb-3 widget-chart widget-chart2 text-left card">
+            <div class="widget-content">
+                <div class="widget-content-outer">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left pr-2 fsize-1">
+                            <div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
+                        </div>
+                        <div class="widget-content-right w-100">
+                            <div class="progress-bar-xs progress">
+                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content-left fsize-1">
+                        <div class="text-muted opacity-6">Totals Target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- </body>
+</html> -->
+<div class="container-fluied">
+<div class="row">
+<section  class="row justify-content-center">
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Update Item Information</h5>
+
+</div>
+<div class="modal-body">
+<div class="row justify-content-center">
+<div>
+
+<form [formGroup]="addItems">
+<div class="text-center py-3">
+<h4 class="text-center" style="color: #ef476f;">Expenses</h4>
+</div>
+<div class="row justify-content-center ">
+<div class="row">
+<div class="col-md-6 mb-2">
+<label class=" "><span class="text-danger fw-bold ">*</span>Invest in</label>
+<input type="text" placeholder="item-name" class="form-control" formControlName="category" [ngClass]="{'is-invalid':(addItems.controls.category.touched||isTrySubmit)&& addItems.controls.category.errors}"/>
+<div class="invalid-feedback" *ngIf="(addItems.controls.category.touched||isTrySubmit)&& addItems.controls.category.errors">
+<div *ngIf="addItems.controls.category.errors['required']">* invest (item name) is required.
+</div>
+
+</div>
+
+
+</div>
+<!-- start -->
+<div class="col-md-6 mb-2">
+
+<label class=" "><span class="text-danger fw-bold">*</span>Amount</label>
+<input type="text" placeholder="amount" class="form-control" formControlName="amount" [ngClass]="{'is-invalid':(addItems.controls.amount.touched||isTrySubmit)&& addItems.controls.amount.errors}"/>
+<div class="invalid-feedback" *ngIf="(addItems.controls.amount.touched||isTrySubmit)&&addItems.controls.amount.errors">
+<div *ngIf="addItems.controls.amount.errors['required']">*amoutn is required.
+</div>
+<!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+</div> -->
+</div>
+
+</div>
+<!-- end -->
+</div>
+
+</div>
+
+
+
+<div class="row justify-content-center ">
+<div class="row">
+<div class="col-md-6 mb-2">
+<label class=" "><span class="text-danger fw-bold">*</span>Date</label>
+<input type="date" placeholder="" class="form-control" formControlName="date" [ngClass]="{'is-invalid':(addItems.controls.date.touched||isTrySubmit)&& addItems.controls.date.errors}"/>
+<div class="invalid-feedback" *ngIf="(addItems.controls.date.touched||isTrySubmit)&& addItems.controls.date.errors">
+<div *ngIf="addItems.controls.date.errors['required']">*date is required.
+</div>
+<!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+</div> -->
+</div>
+
+
+</div>
+
+<!-- start -->
+<div class="col-md-6 mb-2">
+<label>Payment Method</label>
+<select class="form-select"  formControlName="paymentMethod" [ngClass]="{'is-invalid':(addItems.controls.paymentMethod.touched||isTrySubmit)&& addItems.controls.paymentMethod.errors}" >
+<option selected value >category of Payment</option>
+<option value="gpay">Gpay</option>
+<option value="cash">Cash</option>
+<option value="credit card">Credit-card</option>
+<option value="net banking">Net Banking</option>
+<option value="paytm">Paytm</option>
+<option value="others">Others</option>
+
+</select>
+<div class="invalid-feedback" *ngIf="(addItems.controls.paymentMethod.touched||isTrySubmit)&& addItems.controls.paymentMethod.errors">
+<div *ngIf="addItems.controls.paymentMethod.errors['required']">*Payment category is required.
+</div>
+<!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+</div> -->
+</div>
+</div>
+
+
+<!-- end -->
+</div>
+
+</div>
+<div class="row justify-content-center ">
+<div class="row">
+<div class="col-md-6 mb-2">
+<label for="comment">Description:</label>
+<textarea class="form-control" formControlName="description" placeholder="write here!" rows="4" id="comment"></textarea>
+</div>
+</div>
+</div>
+
+<div class="row justify-content-evenly">
+<div class="col-md-6 py-3 text-center d-flex justify-content-evenly">
+
+</div>
+</div>
+
+</form>
+</div></div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary" (click)="updateSave(index)">Save changes</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+</div>
+<div class="container">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLongTitle">Confirm Deletion? </h5>
+</div>
+<div class="modal-body">
+<p class="text-danger">Are you sure you want to delete the following item?</p>
+<div class="alert alert-warning">
+<strong>Item:</strong> {{ obj.category }}<br>
+<strong>Amount:</strong> {{ obj.amount }}<br>
+<strong>Date:</strong> {{ obj.date|date:'medium'}}
+</div>
+<p>This action cannot be undone.<fa-icon class="text-danger" [icon]="icons.faUndo" ></fa-icon> </p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+<button type="button" class="btn btn-primary" (click)="confirmDelete()">Delete</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>

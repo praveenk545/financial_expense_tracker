@@ -1,0 +1,50 @@
+<div class="container">
+    <section class="row justify-content-center">
+             <!-- for login -->
+             <div class="col-md-5 bg-white  border rounded shadow-lg mt-3 m-3">
+                <form [formGroup]="login" >
+                    <div class="text-center py-3">
+<h4 class="text-center" style="color: #06d6a0;;">Login</h4>
+                    </div>
+                    <div class="row justify-content-center ">
+                        <div class="col-md-6 mb-2">
+                            <label class=" ">Email</label>
+                            <input type="email" placeholder="Email" class="form-control" formControlName="isEmail" [ngClass]="{'is-invalid':(login.controls.isEmail.touched||isTrySubmitforLogin)&& login.controls.isEmail.errors}"/>
+                            <div class="invalid-feedback" *ngIf="(login.controls.isEmail.touched||isTrySubmitforLogin)&& login.controls.isEmail.errors">
+                                <div *ngIf="login.controls.isEmail.errors['required']">*Enter your Email.
+                                </div>
+                                <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                </div> -->
+                                </div>
+                        
+                            
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center ">
+                        <div class="col-md-6 mb-2">
+
+                            <label class=" ">password</label>
+                            <input type="password" placeholder="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':(login.controls.password.touched||isTrySubmitforLogin)&& login.controls.password.errors}"/>
+                            <div class="invalid-feedback" *ngIf="(login.controls.password.touched||isTrySubmitforLogin)&& login.controls.password.errors">
+                                <div *ngIf="login.controls.password.errors['required']">*Enter your password.
+                                </div>
+                                <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                </div> -->
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row justify-content-evenly">
+                        <div class="col-md-6 py-3 text-center d-flex justify-content-evenly">
+                            <button type="button" class="sign-Up btn" (click)="isChangeFormToSingup()">Register</button>
+<button type="submit" class="submit btn" (click)="isLogin()">Submit</button>
+
+                        </div>
+                    </div>
+                
+                </form>
+                </div>
+                <!-- for login -->
+    </section>
+</div>

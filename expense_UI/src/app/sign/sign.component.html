@@ -1,0 +1,153 @@
+<div class="container">
+    <section *ngIf="!isChange" id="sing-Up">
+        <div  class="row justify-content-center align-items-center">
+            <div  class="col-md-8 bg-white rounded shadow-lg mt-3 m-3" >
+                <div class="py-2">
+                    <h4 class="py-2 text-center" style="color:  #06d6a0;">Register</h4>
+                </div>
+                <form class="" [formGroup]="signIn" (ngSubmit)="submit()">
+                   
+                  
+                    <div class="row justify-content-center">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <!-- <mat-form-field appearance="outline"> -->
+                                <label class=" ">Name</label>
+                                <input type="text" placeholder="Name" class="form-control" formControlName="name" [ngClass]="{'is-invalid':(signIn.controls.name.touched||isTrySubmit)&& signIn.controls.name.errors}"/>
+                            <!-- </mat-form-field> -->
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.name.touched||isTrySubmit)&& signIn.controls.name.errors">
+                                    <div *ngIf="signIn.controls.name.errors['required']">Enter your Name..
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label class=" ">Phone</label>
+                                <input type="email" placeholder="phone" class="form-control" formControlName="phone" [ngClass]="{'is-invalid':(signIn.controls.phone.touched||isTrySubmit)&& signIn.controls.phone.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.phone.touched||isTrySubmit)&& signIn.controls.phone.errors">
+                                    <div *ngIf="signIn.controls.phone.errors['required']">*Enter your Mobile number.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                   
+        
+
+                    <div class="row justify-content-center">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class=" ">Email</label>
+                                <input type="email" placeholder="Email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':(signIn.controls.email.touched||isTrySubmit)&& signIn.controls.email.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.email.touched||isTrySubmit)&& signIn.controls.email.errors">
+                                    <div *ngIf="signIn.controls.email.errors['required']">*Enter your Email.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label class=" ">password</label>
+                                <input type="password" placeholder="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':(signIn.controls.password.touched||isTrySubmit)&& signIn.controls.password.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.password.touched||isTrySubmit)&& signIn.controls.password.errors">
+                                    <div *ngIf="signIn.controls.password.errors['required']">*Enter your password.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                        </div>
+                     
+                    </div>
+
+                    <!-- dob file -->
+                    <div class="row justify-content-center">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class=" "><span class="text-danger fw-bold">*</span>DOB</label>
+                                <input type="date" placeholder="" class="form-control" formControlName="dob" [ngClass]="{'is-invalid':(signIn.controls.dob.touched||isTrySubmit)&& signIn.controls.dob.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.dob.touched||isTrySubmit)&& signIn.controls.dob.errors">
+                                    <div *ngIf="signIn.controls.dob.errors['required']">*Date is required.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                    <label for="formFile" class="form-label">Profile</label>
+                                    <input class="form-control" type="file" id="formFile" class="form-control" formControlName="profile" [ngClass]="{'is-invalid':(signIn.controls.profile.touched||isTrySubmit)&& signIn.controls.profile.errors}"/>
+                                    <div class="invalid-feedback" *ngIf="(signIn.controls.profile.touched||isTrySubmit)&& signIn.controls.profile.errors">
+                                        <div *ngIf="signIn.controls.profile.errors['required']">*profile pic is required.
+                                        </div>
+                                        <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                        </div> -->
+                                        </div>
+                                 
+                            </div>
+                        </div>
+                     
+                    </div>
+                    <!-- dob file -->
+                     <!-- occu, country -->
+                     <div class="row justify-content-center">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class=" ">occupation</label>
+                                <input type="email" placeholder="work" class="form-control" formControlName="occupation" [ngClass]="{'is-invalid':(signIn.controls.occupation.touched||isTrySubmit)&& signIn.controls.occupation.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.occupation.touched||isTrySubmit)&& signIn.controls.occupation.errors">
+                                    <div *ngIf="signIn.controls.occupation.errors['required']">*Enter your occupation.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label class=" ">country</label>
+                                <input type="text" placeholder="your country" class="form-control" formControlName="country" [ngClass]="{'is-invalid':(signIn.controls.country.touched||isTrySubmit)&& signIn.controls.country.errors}"/>
+                                <div class="invalid-feedback" *ngIf="(signIn.controls.country.touched||isTrySubmit)&& signIn.controls.country.errors">
+                                    <div *ngIf="signIn.controls.country.errors['required']">*Enter your country.
+                                    </div>
+                                    <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                                    </div> -->
+                                    </div>
+                            </div>
+                        </div>
+                     
+                    </div>
+                     <!-- occu, country -->
+                    <div class="row justify-content-center text-center">
+                        <div class="col-md-6 py-3 d-flex justify-content-evenly">
+                           
+                            <button type="button" class="login btn" (click)="isChangeForm()">Login</button>
+                            <button type="submit" class="submit btn">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+       
+        </div>
+    </section>
+    <section *ngIf="isChange" id="thank-you">
+        <div  class="row justify-content-center py-4 align-items-center">
+            <div class="col-md-10 d-flex justify-content-center border bg-white rounded shadow-sm ">
+            <div class="jumbotron text-center">
+                <h1 class="display-3 py-3">Thank You!</h1>
+                <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
+                <hr>
+                <p>
+                  Having trouble? <a [routerLink]="['/contact']"> Contact us</a>
+                </p>
+                <p class="lead">
+                  <a class="btn btn-primary btn-sm" [routerLink]="['/sign-up']" role="button">Continue to Login</a>
+                </p>
+              </div>
+            </div>
+        </div>
+    </section>
+
+</div>

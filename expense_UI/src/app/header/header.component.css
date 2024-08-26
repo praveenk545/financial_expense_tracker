@@ -1,0 +1,46 @@
+/* .div span{
+    font-size: 1.1rem;
+    font-weight: 500;
+} */
+.nav-link {
+    text-decoration: none;
+    color: #5cbebd;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.nav-link.active-link {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color:#06d6a0;
+    border-bottom: 2px solid #ef476f; 
+
+    /* color:#ffffff;
+    background-color: #ef476f; 
+    border-radius: 10px; */
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16m-7 6h7' /%3E%3C/svg%3E");
+}
+
+/* Optional: Adjust the padding and margin for the navbar items */
+.navbar-nav {
+    margin-left: auto;
+}
+
+
+

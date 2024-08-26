@@ -1,0 +1,48 @@
+  newLogin(){
+    const loginData:any={email:this.login.value.isEmail,password:this.login.value.password};
+    this.isTrySubmitforLogin=true;
+     if(this.login.valid){
+      this.service.newLogin(loginData).subscribe((res:any)=>{
+        if(res.user.roles==='Reader'&& res.success){
+          this.showSuccessAlert()
+          setTimeout(() => {
+            this.route.navigateByUrl('income').then()
+          }, 5000);
+        }else{
+          this.showSnackBarAlert("You are not authorized to view this page")
+        }
+      },(error:HttpErrorResponse)=>{
+        this.showSnackBarAlert(`${error.name}`)
+      })
+     }
+  }
+
+
+
+content start here 
+
+About Us
+Welcome to "Financial Alchemist: The Chronicles of Budgeting"
+In a world where managing finances can be as complex as a mecha battle or as intricate as a magical spell, "Financial Alchemist: The Chronicles of Budgeting" emerges as your ultimate companion in financial mastery. Our mission is to empower individuals and businesses with a robust and intuitive tool for managing income, expenses, and budgets with ease and precision.
+
+Our Story
+Inspired by the precision and dedication found in the anime realm, we embarked on a journey to create a financial tracker that combines cutting-edge technology with a user-friendly experience. Just as anime characters navigate their epic adventures, we’ve designed our platform to guide you through the often challenging landscape of personal finance.
+
+What We Offer
+Comprehensive Tracking: Keep a detailed record of your income and expenses with features designed to give you a clear picture of your financial health.
+Budget Management: Create, adjust, and monitor budgets to stay on track and achieve your financial goals.
+User Authentication: Secure and straightforward login, logout, and registration processes ensure that your financial data remains private and protected.
+Intuitive Interface: Built with Angular and styled with Bootstrap, our application provides a responsive and engaging user experience.
+Our Technology
+NestJS: Powers our backend with scalability and efficiency, ensuring a smooth and reliable user experience.
+Angular: Our front-end framework that delivers a dynamic and responsive interface for seamless interaction.
+PostgreSQL: A robust relational database that securely manages and organizes your financial data.
+Bootstrap: Enhances the visual appeal and responsiveness of our application, making it accessible on any device.
+Our Vision
+Just as in anime, where every hero has a unique story and every adventure has its challenges, we believe that every financial journey is unique. Our vision is to provide a tool that adapts to your needs, helps you overcome financial hurdles, and ultimately leads you to success.
+
+Join Us on Our Journey
+We’re excited to be part of your financial adventure. Whether you’re managing personal finances or overseeing business budgets, "Financial Alchemist: The Chronicles of Budgeting" is here to assist you every step of the way. Dive in and start mastering your finances today!
+
+For any inquiries or support, feel free to contact us at support@financialalchemist.com.
+

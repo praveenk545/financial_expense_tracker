@@ -1,0 +1,96 @@
+<div class="container">
+    <!-- class="bg-light rounded" -->
+    <section id="user" class="">
+        <div class="row justify-content-center py-3 ">
+          <div class="row">
+            <div class="col-md d-flex justify-content-between">
+                <span class="px-3 h6 btn bg-white shadow"  [routerLink]="['/contact']" role="button"><fa-icon style="color: #5cbebd;" [icon]="icons.faEnvelope"></fa-icon><span class="ms-2">Contact us</span></span>
+                <span class="px-3 h6 btn bg-white shadow" [routerLink]="['']"><fa-icon style="color: #5cbebd;" [icon]="icons.faUserEdit"></fa-icon><span class="ms-2" >Edit-info</span></span>
+              
+            </div>
+          </div>
+            <div class="col-md-8 m-1 shadow-lg bg-white border px-3 rounded py-3 ">
+                <div class="text-center">
+                    <h4 class="py-1" style="color: #5cbebd;">Financial Alchemist</h4>
+                    <p class="fs-4 h5 py-2">"Save a little every day.
+                        Watch your wealth grow over time."</p>
+                </div>
+                <!-- user card start -->
+                 <div class="row justify-content-center gap-3 ">
+                <!-- <div class="col-md-5 shadow-sm py-3 px-2 border text-center">
+          
+                    <p>
+                        <img src="../../assets/img5.jpg" class="image rounded-circle" alt="user">
+                    </p>
+                    
+                   
+                        <p class="h-6">Praveen kumar K</p>
+               
+                    <p>CEO, Founder of Z-Track</p>
+                    <button class="accept btn">Accept Request</button>
+                    <div class="">
+                        <span class="ignore"><a href="">Ignore Request</a></span>
+                    </div>
+                  
+           
+                </div> -->
+                <!-- under section start -->
+                <div class="userView col-md-5 bg-white  shadow py-2 px-2">
+                    <div class="text-center">
+                        <p>
+                            <img src="../../assets/img16.jpg" class="image shadow rounded-circle" alt="user">
+                        </p>
+                        <p class="h6 text-secondary" role="button" ><span>{{user.name}}</span></p>
+                    </div>
+                
+                    
+                   
+                        
+                    
+                        <div class="user-details d-flex justify-content-evenly">
+                            <div class="text-secondary">
+                                <p><b>Phone :</b></p>
+                                <p><b>Email Id :</b></p>
+                                <p><b>DOB :</b></p>
+                                <p><b>Profession :</b></p>
+                                <p><b>Native :</b></p>
+                            </div>
+                            <div class="">
+                                <p>{{user.phone}}</p>
+                                <p>{{user.email}}</p>
+                                <p>{{user.dob}}</p>
+                                <p>{{user.occupation}}</p>
+                                <p>{{user.country}}</p>
+                            </div>
+                        </div>
+                </div>
+                <!-- under section end -->
+                 </div>
+                <!-- user card end -->
+            </div>
+            <!-- new content -->
+            <div class="col-md-8">
+                
+        
+    
+             
+            </div>
+            <!-- new content -->
+            <!-- unsubscribe -->
+            <div class="col-md-8 shadow-lg bg-white border px-3 rounded py-3 ">
+                
+            
+                <div class="text-center">
+                    <p class="h6"><span class="text-secondary"> No longer want to receive these email?</span><span role="button"> You can Unsubscribe here! </span></p>
+                </div>  
+             
+            </div>
+            <!-- unsubscribe  -->
+        </div>
+        <!-- end of user info -->
+
+         <!-- simple footer start -->
+           
+         <!-- simple footer end -->
+    </section>
+</div>

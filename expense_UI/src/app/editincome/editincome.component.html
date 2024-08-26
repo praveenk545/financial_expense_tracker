@@ -1,0 +1,228 @@
+<section>
+    <div class="container mt-3">
+      <section id="income">
+          <div class="row justify-content-center rounded gx-5 p-3">
+ 
+  
+              <!-- income -->
+               <section *ngIf="!isTable">
+                <div class="container bdr">
+                  <table class="table bdr">
+                    <thead class="table-dark p-2">
+                      <tr class="p-3 text-secondary">
+                        <th scope="col">#</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Recurring</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                      
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let v of paginatedProducts; let i =index">
+                        <th scope="row">{{ getGlobalIndex(i) }}</th>
+                        <td>{{v.source|titlecase}}</td>
+                        <td>{{v.currency}}{{ v.amount}}</td>
+                        <td>{{v.date}}</td>
+                        <td [ngClass]="{'text-success': v.recurring=='yes'}">  <span>{{ v.recurring == 'yes' ? 'Yes' : 'No' }}</span></td>
+                        <td>
+                         
+           <div class="fs-5 " role="button">
+       
+	<fa-icon class="text-primary" data-toggle="modal" data-target="#exampleModal" (click)="edit(v.id,v)" [icon]="icons.faEdit" ></fa-icon> 
+
+	<fa-icon class="text-danger ms-4" data-toggle="modal" data-target="#exampleModalCenter" (click)="delete(v.id,v)" [icon]="icons.faRemove" ></fa-icon> 
+		   </div> 
+
+                        </td>
+                      </tr>
+                  
+                   
+                    </tbody>
+                  </table>
+                  </div>
+                  <div class="pagination-controls row justify-content-center gap-2">
+                    <div class="d-flex justify-content-center gap-5">
+                      <button class="btn btn-dark p-3 text-white" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"><fa-icon  style="color: rgb(88, 235, 216);" [icon]="icons.faArrowAltCircleLeft"></fa-icon><span class="ms-2">Previous</span> </button>
+                      <span class="p-3 text-danger bg-light rounded">{{ currentPage }}</span>
+                      <button class="btn btn-dark p-3 text-white" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"><span>Next</span><fa-icon class="ms-2" style="color: rgb(88, 235, 216);" [icon]="icons.faArrowAltCircleRight"></fa-icon></button>
+                      </div>
+                    </div>
+          </section>
+          <!-- income end -->
+  
+          <!-- income add -->
+         
+          <!-- income add end -->
+          </div>
+      </section>
+    </div>
+
+<div class="container-fluied">
+  <div class="row">
+    <section  class="row justify-content-center">
+      <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 class="modal-title" id="exampleModalLabel">Update Item Information</h5>
+
+ </div>
+ <div class="modal-body">
+   <div  class="addmyincome  justify-content-center border bg-white rounded shadow-lg mt-3 m-3">
+     <form [formGroup]="Form">
+         <div class="text-center py-3">
+<h4 class="text-center" style="color: #ef476f;;">Income</h4>
+         </div>
+
+         <div class="row justify-content-center ">
+           <div class="row">
+             <div class="col-md-6 mb-2">
+            <label class=" "><span class="text-danger fw-bold">*</span>Source</label>
+                     <select class="form-select"  formControlName="source" [ngClass]="{'is-invalid':(Form.controls.source.touched||isTrySubmit)&& Form.controls.source.errors}" >
+                         <option select >category of income</option>
+                         <option value="salary">Salary</option>
+                         <option value="bonus">Bonus</option>
+                         <option value="freelance">Freelance</option>
+                         <option value="rental">Rental</option>
+                         <option value="trading">Trading</option>
+                         <option value="business">Business</option>
+                         <option value="others">Others</option>
+                        
+                       </select>
+                       <div class="invalid-feedback" *ngIf="(Form.controls.source.touched||isTrySubmit)&&Form.controls.source.errors">
+                         <div *ngIf="Form.controls.source.errors['required']">*Source is required.
+                         </div>
+                         <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                         </div> -->
+                         </div>
+                 
+             </div>
+             <div class="col-md-6 mb-2">
+
+               <label class=" "><span class="text-danger fw-bold">*</span>Amount</label>
+               <input type="text" placeholder="amount" class="form-control" formControlName="amount" [ngClass]="{'is-invalid':(Form.controls.amount.touched||isTrySubmit)&& Form.controls.amount.errors}"/>
+               <div class="invalid-feedback" *ngIf="(Form.controls.amount.touched||isTrySubmit)&&Form.controls.amount.errors">
+                   <div *ngIf="Form.controls.amount.errors['required']">*Amount is required.
+                   </div>
+                   <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                   </div> -->
+                   </div>
+               
+           </div>
+           </div>
+         </div>
+
+         <div class="row justify-content-center ">
+           <div class="row">
+             <div class="col-md-6 mb-2">
+               <label class=" "><span class="text-danger fw-bold">*</span>Currency</label>
+               <select class="form-select" aria-label="Default select example" formControlName="currency" [ngClass]="{'is-invalid':(Form.controls.currency.touched||isTrySubmit)&& Form.controls.currency.errors}" >
+                 <option selected>category of income</option>
+                 <option value="₹">Rupee</option>
+                 <option value="$">Doller</option>
+               </select>
+               <div class="invalid-feedback" *ngIf="(Form.controls.currency.touched||isTrySubmit)&&Form.controls.currency.errors">
+                 <div *ngIf="Form.controls.currency.errors['required']">*Currency is required.
+                 </div>
+                 <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                 </div> -->
+                 </div>
+           </div>
+           <!-- .. -->
+
+           <div class="col-md-6 mb-2">
+             <label class=" "><span class="text-danger fw-bold">*</span>Recurring</label>
+             <select class="form-select" aria-label="Default select example" formControlName="recurring" [ngClass]="{'is-invalid':(Form.controls.recurring.touched||isTrySubmit)&& Form.controls.recurring.errors}" >
+               <option selected>the income is recurring (Yes/No)</option>
+               <option value="yes">Yes</option>
+               <option value="no">No</option>
+             </select>
+             <div class="invalid-feedback" *ngIf="(Form.controls.recurring.touched||isTrySubmit)&&Form.controls.recurring.errors">
+                 <div *ngIf="Form.controls.recurring.errors['required']">*recurring is required.
+                 </div>
+                 <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+                 </div> -->
+                 </div>
+         </div>
+           <!-- .. -->
+           </div>
+       
+       </div>
+
+
+
+       <div class="row justify-content-center ">
+         <div class="row">
+           <div class="col-md-6 mb-2">
+           <label class=" "><span class="text-danger fw-bold">*</span>Date</label>
+           <input type="date" placeholder="" class="form-control" formControlName="date" [ngClass]="{'is-invalid':(Form.controls.date.touched||isTrySubmit)&& Form.controls.date.errors}"/>
+           <div class="invalid-feedback" *ngIf="(Form.controls.date.touched||isTrySubmit)&& Form.controls.date.errors">
+               <div *ngIf="Form.controls.date.errors['required']">*Date is required.
+               </div>
+               <!-- <div *ngIf="formValue.controls.mobile.errors['required'].pattern['minLength']">Enter 10 digit mobile no..
+               </div> -->
+               </div>
+       
+           
+       </div>
+     <!-- start -->
+     <div class="col-md-6 mb-2">
+       <label for="comment">Description:</label>
+<textarea class="form-control" formControlName="description" rows="4" id="comment"></textarea>
+     </div>
+     <!-- end -->
+     </div>
+        
+     </div>
+     
+     </form>
+     </div>
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+   <button type="button" class="btn btn-primary" (click)="updateSave(index)">Save changes</button>
+ </div>
+</div>
+</div>
+</div>
+      </section>
+  </div>
+  
+</div>
+
+<div class="container">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deletion? </h5>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">Are you sure you want to delete the following item?</p>
+        <div class="alert alert-warning">
+            <strong>Source:</strong> {{ obj.source }}<br>
+            <strong>Amount:</strong> {{ obj.currency }}{{ obj.amount }}<br>
+            <strong>Date:</strong> {{ obj.date|date:'medium'}}
+        </div>
+        <p>This action cannot be undone.<fa-icon class="text-danger" [icon]="icons.faUndo" ></fa-icon> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+        <button type="button" class="btn btn-primary" (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+  
+  </section>

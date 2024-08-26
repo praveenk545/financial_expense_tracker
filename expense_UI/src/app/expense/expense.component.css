@@ -1,0 +1,36 @@
+.butget{
+    background-color: rgb(72, 239, 184);
+}.add{
+    background: #ef476f;;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+}
+.hidden-select {
+    display: none;
+}
+.submit{
+    background: #1b9aaa;
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .close{
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #000;
+      font-weight: 400;
+  }
+  .close:hover{
+      background: #ffc43d;
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 400;
+      transition: 0.6s;
+   
+    }
+
+    
